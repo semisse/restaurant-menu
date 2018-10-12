@@ -7,17 +7,22 @@ import Maincourse from '../Maincourse';
 import Desert from '../Desert';
 import Confirmation from '../Confirmation';
 import Pager from '../Pager'
+import styled from 'styled-components'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 export default class Menu extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			step: 0
+            step: 0,
 		};
 
 		this.nextStep = this.nextStep.bind(this);
-		this.previousStep = this.previousStep.bind(this);
-	}
+        this.previousStep = this.previousStep.bind(this);
+    }
 
 	nextStep() {
         if (this.state.step < 6) {
@@ -37,31 +42,37 @@ export default class Menu extends Component {
 
 	renderStep(step) {
 		switch (step) {
-			case 1:
-                return <Soup data={this.props.data}/>;
+            case 1:
+                return <Soup data={this.props.data} update={this.props.update} />;
 			case 2:
-				return <Fish data={this.props.data} />;
+				return <Fish data={this.props.data} update={this.props.update} />;
 			case 3:
-				return <Salad data={this.props.data} />;
+				return <Salad data={this.props.data} update={this.props.update} />;
 			case 4:
-				return <Maincourse data={this.props.data} />;
+				return <Maincourse data={this.props.data} update={this.props.update} />;
 			case 5:
-				return <Desert data={this.props.data} />;
+				return <Desert data={this.props.data} update={this.props.update} />;
 			case 6:
-				return <Confirmation data={this.props.data} />;
+				return <Confirmation data={this.props.data} update={this.props.update} />;
 			default:
-                return <Horsdoeuvres data={this.props.data} />;
+                return <Horsdoeuvres data={this.props.data} update={this.props.update} />;
 		}
 	}
 	render() {
 		return (
 			<div>
+                <Grid>
                 <Pager step={this.state.step} />
-                <button onClick={this.previousStep}>Previous</button>
-				<button onClick={this.nextStep}>Next</button>
-				{this.renderStep(this.state.step)}
-				<button onClick={this.previousStep}>Previous</button>
-				<button onClick={this.nextStep}>Next</button>
+                <div>
+                    <button onClick={this.previousStep}>Previous</button>
+                    <button onClick={this.nextStep}>Next</button>
+                </div>
+                {this.renderStep(this.state.step)}
+                <div>
+                    <button onClick={this.previousStep}>Previous</button>
+                    <button onClick={this.nextStep}>Next</button>
+                </div>
+                </Grid>
 			</div>
 		);
 	}
