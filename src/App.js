@@ -7,6 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       data: [],
+      step: 0
     }
     this.update = this.update.bind(this)
   }
@@ -23,18 +24,15 @@ class App extends Component {
     let data = [...this.state.data]
     let item = {
       ...data[id],
-      selected: true
+      selected: !data[id].selected
     }
-    
     data[id] = item
     this.setState({data})
-    console.log(this.state.data)
   }
 
   render() {
     return (
       <div className="App">
-      {console.log(this.state.data)}
         <Menu data={this.state.data} update={this.update} />
       </div>
     );

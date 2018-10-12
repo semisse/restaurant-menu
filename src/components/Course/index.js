@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Chilli from '../../img/spice.svg'
 
 const Column = styled.div`
@@ -8,16 +8,6 @@ const Column = styled.div`
   grid-gap: 2.5rem;
   grid-column-gap: 20px;
   justify-content: center;
-`
-
-const Card = styled.div`
-  width: 18rem;
-  height: 26rem;
-  transition: all .2s;
-  padding: .75rem;
-  &:hover{
-    box-shadow: 0 5px 10px 1px rgba(0,0,0,0.20);
-  }
 `
 
 const CourseImage = styled.div`
@@ -55,11 +45,34 @@ export default class Course extends Component {
   }
 
   render() {
+    const Card = styled.div`
+      width: 18rem;
+      height: 26rem;
+      transition: all .2s;
+      padding: .75rem;
+      position: relative;
+      &:hover{
+        box-shadow: 0 5px 10px 1px rgba(0,0,0,0.20);
+      }
+      ${({ selected }) => selected && css`
+        background: blue;
+        &:after{
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: red;
+          content: '';
+        }
+      `}
+    `
     return (
       <div>
         <Column>
         {this.props.filteredCourseType && this.props.filteredCourseType.map(course => 
-          <Card key={course.id} onClick={(id, title) => this.handleClick(course.id, course.title)}>
+          <Card key={course.id} onClick={(id, title) => this.handleClick(course.id, course.title)} selected={course.selected && course.selected}>
             <div>
               <CourseImage style={{backgroundImage: `url(${course.image})`}} alt={course.title} />
             </div>
