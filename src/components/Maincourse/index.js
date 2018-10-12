@@ -10,7 +10,7 @@ export default class Maincourse extends Component {
     return (
       <div>
         <h1>Main Course</h1>
-        <Course filteredCourseType={filteredCourseType} update={this.props.update} />
+        <Course filteredCourseType={filteredCourseType} update={this.props.update} required={this.props.required} />
       </div>
     )
   }

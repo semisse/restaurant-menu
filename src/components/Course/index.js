@@ -70,9 +70,10 @@ export default class Course extends Component {
     `
     return (
       <div>
+        {this.props.required === true ? 'required' : 'not required'}
         <Column>
-        {this.props.filteredCourseType && this.props.filteredCourseType.map(course => 
-          <Card key={course.id} onClick={(id, title) => this.handleClick(course.id, course.title)} selected={course.selected && course.selected}>
+          {this.props.filteredCourseType && this.props.filteredCourseType.map(course => 
+          <Card key={course.id} onClick={() => this.handleClick(course.id, course.title)} selected={course.selected && course.selected}>
             <div>
               <CourseImage style={{backgroundImage: `url(${course.image})`}} alt={course.title} />
             </div>
