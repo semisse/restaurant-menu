@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import Course from '../Course'
 
 export default class Desert extends Component {
+  componentDidMount() {
+    this.props.handleRequired()
+  }
   render() {
     const filteredCourseType = this.props.data && this.props.data.map(item => ({
       ...item, 

@@ -1,117 +1,120 @@
 import React, { Component } from 'react'
-import Horsdoeuvres from './components/Horsdoeuvres';
-import Soup from './components/Soup';
-import Fish from './components/Fish';
-import Salad from './components/Salad';
-import Maincourse from './components/Maincourse';
-import Desert from './components/Desert';
-import Confirmation from './components/Confirmation';
-import Pager from './components/Pager'
+import { Router } from 'react-router-dom'
 import styled from 'styled-components'
+import createHistory from 'history/createBrowserHistory'
+
+import Menu from './components/Menu'
 
 const Grid = styled.div`
   display: grid;
 `
 
+const history = createHistory()
+
 class App extends Component {
-  constructor(props){
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       data: [],
       step: 0,
-      required: false
+      required: false,
+      disabled: true
     }
-    this.nextStep = this.nextStep.bind(this);
-    this.previousStep = this.previousStep.bind(this);
+    this.nextStep = this.nextStep.bind(this)
+    this.previousStep = this.previousStep.bind(this)
     this.update = this.update.bind(this)
+    this.handleRequired = this.handleRequired.bind(this)
   }
 
-  componentDidMount(){
-    const url =`https://api.myjson.com/bins/sf7fw`
+  componentDidMount () {
+    const url = `https://api.myjson.com/bins/sf7fw`
     fetch(url)
-    .then(response => response.json())
-    .then(data => this.setState({ data }))
+      .then(response => response.json())
+      .then(data => this.setState({ data }))
   }
 
-  nextStep() {
-    if (this.state.step < 6) {
-      this.setState({
-        step: this.state.step + 1
-      });
-    }
+  nextStep () {
+    const noSlashes = history.location.pathname.replace(/\//g, '')
+    const newPage = parseInt(noSlashes) + parseInt(1)
 
-    //Checking if we are on the Main Course section, where it is required
-    //to select at least one course.
-    const MainCourse = this.state.data && this.state.data.map(item => ({
-      ...item,
-      courseType: item.courseType.filter(x => x === 4)}))
-      .filter(x => x.courseType.length > 0)
-
-    const MainCourseSelected = MainCourse.filter(item => item.selected === true)
-
-    if(this.state.step === 4 && MainCourseSelected.length === 0 ) {
-      this.setState({
-        step: this.state.step,
-        required: true
-      });
+    if (noSlashes <= 5 && this.state.required === false) {
+      history.push('/' + newPage)
     }
   }
 
-  previousStep() {
-    if (this.state.step > 0) {
-      this.setState({
-        step: this.state.step - 1
-      });
+  previousStep () {
+    const noSlashes = history.location.pathname.replace(/\//g, '')
+    const newPage = parseInt(noSlashes) - parseInt(1)
+    if (noSlashes > 0) {
+      history.push('/' + newPage)
     }
+    this.setState({
+      required: false
+    })
   }
 
-  update(id){
+  update (id) {
     let data = [...this.state.data]
     let item = {
       ...data[id],
       selected: !data[id].selected
     }
     data[id] = item
-    this.setState({data, required: !this.state.required})
+
+    this.setState({
+      data,
+    }, () => {
+      const MainCourse = this.state.data && this.state.data.map(item => ({
+        ...item,
+        courseType: item.courseType.filter(x => x === 4) }))
+        .filter(x => x.courseType.length > 0 && x.selected === true )
+        
+      if(history.location.pathname === '/4' && MainCourse.length > 0) {
+        this.setState({
+          required: false,
+          disabled: false
+        })
+      } else if (history.location.pathname === '/4' && MainCourse.length === 0) {
+        this.setState({
+          required: true,
+          disabled: true
+        })
+      }
+    })
   }
 
-  renderStep(step) {
-    switch (step) {
-      case 1:
-        return <Soup data={this.state.data} update={this.update} />;
-      case 2:
-        return <Fish data={this.state.data} update={this.update} />;
-      case 3:
-        return <Salad data={this.state.data} update={this.update} />;
-      case 4:
-        return <Maincourse data={this.state.data} required={this.state.required} update={this.update} />;
-      case 5:
-        return <Desert data={this.state.data} update={this.update} />;
-      case 6:
-        return <Confirmation data={this.state.data} update={this.update} />;
-      default:
-        return <Horsdoeuvres data={this.state.data} update={this.update} />;
+  handleRequired (){
+    const MainCourse = this.state.data && this.state.data.map(item => ({
+      ...item,
+      courseType: item.courseType.filter(x => x === 4) }))
+      .filter(x => x.courseType.length > 0 && x.selected === true )
+
+    if (history.location.pathname === '/4' && MainCourse.length === 0) {
+      this.setState({
+        required: true
+      })
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Grid>
-          <Pager step={this.state.step} />
-          <div>
-            <button onClick={this.previousStep}>Previous</button>
-            <button onClick={this.nextStep}>Next</button>
-          </div>
-          {this.renderStep(this.state.step)}
+          <Router history={history}>
+            <div>
+              <button onClick={this.previousStep}>Previous</button>
+              <button onClick={this.nextStep}>Next</button>
+              <Menu data={this.state.data} required={this.state.required} handleRequired={this.handleRequired} disabled={this.state.disabled} update={this.update} />
+            </div>
+          </Router>
           <div>
             <button onClick={this.previousStep}>Previous</button>
             <button onClick={this.nextStep}>Next</button>
           </div>
         </Grid>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
