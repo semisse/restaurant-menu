@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
 
+import Required from '../Required'
+
 import Chilli from '../../img/spice.svg'
 import Close from '../../img/close.svg'
 
@@ -40,10 +42,23 @@ export default class Course extends Component {
   constructor (props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
+    this.renderRequired = this.renderRequired.bind(this)
   }
 
   handleClick (id) {
     this.props.update(id)
+  }
+
+  renderRequired(){
+
+    const pageSelected = this.props.data && this.props.data.map(item => ({
+      ...item,
+      courseType: item.courseType.filter(x => x === 4) }))
+      .filter(x => x.courseType.length > 0 && x.selected === true)
+
+    if (this.props.pathname === '/4' && this.props.required && pageSelected.length === 0) {
+      return <Required />
+    }
   }
 
   render () {
@@ -73,9 +88,10 @@ export default class Course extends Component {
         }
       `}
     `
+
     return (
       <div>
-        {this.props.required === true ? 'required' : 'not required'}
+        {this.renderRequired()}
         <Column>
           {this.props.filteredCourseType && this.props.filteredCourseType.map(course =>
             <Card key={course.id} onClick={() => this.handleClick(course.id)} selected={course.selected && course.selected}>

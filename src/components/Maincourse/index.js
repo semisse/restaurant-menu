@@ -13,7 +13,7 @@ export default class Maincourse extends Component {
     return (
       <div>
         <h1>Main Course</h1>
-        <Course filteredCourseType={filteredCourseType} update={this.props.update} required={this.props.required} />
+        <Course filteredCourseType={filteredCourseType} data={this.props.data} update={this.props.update} required={this.props.required} pathname={this.props.pathname} />
       </div>
     )
   }

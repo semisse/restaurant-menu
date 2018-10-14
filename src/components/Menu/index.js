@@ -20,7 +20,7 @@ class Menu extends Component {
       case '/3':
         return <Route path='/3' render={() => <Salad data={this.props.data} update={this.props.update} />} />
       case '/4':
-        return <Route path='/4' render={() => <Maincourse data={this.props.data} required={this.props.required} update={this.props.update} handleRequired={this.props.handleRequired} />} />
+        return <Route path='/4' render={() => <Maincourse data={this.props.data} required={this.props.required} update={this.props.update} handleRequired={this.props.handleRequired} pathname={this.props.history.location.pathname} />} />
       case '/5':
         return <Route path='/5' render={() => <Desert data={this.props.data} update={this.props.update} handleRequired={this.props.handleRequired} />} />
       case '/6':
