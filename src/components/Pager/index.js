@@ -117,9 +117,7 @@ export default class Pager extends Component {
       border: 1px solid grey;
       transition: all 2s ease;
     `
-    console.log(this.select(1))
     return (
-
       <div>
         <Navlink to='/0' className={this.select(0).length > 0 && 'completed'} >
           <Step>

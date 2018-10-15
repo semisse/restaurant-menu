@@ -18,7 +18,7 @@ class App extends Component {
       data: [],
       step: 0,
       required: false,
-      disabled: true
+      disabled: true,
     }
     this.nextStep = this.nextStep.bind(this)
     this.previousStep = this.previousStep.bind(this)
@@ -68,7 +68,7 @@ class App extends Component {
         ...item,
         courseType: item.courseType.filter(x => x === 4) }))
         .filter(x => x.courseType.length > 0 && x.selected === true )
-        
+
       if(history.location.pathname === '/4' && MainCourse.length > 0) {
         this.setState({
           required: false,
