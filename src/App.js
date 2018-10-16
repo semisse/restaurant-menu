@@ -1,36 +1,22 @@
 import React, { Component } from 'react'
 import { Router } from 'react-router-dom'
-import styled from 'styled-components'
 import createHistory from 'history/createBrowserHistory'
-
 import Menu from './components/Menu'
-
-const Wrapper = styled.div`
-  margin: 0 auto;
-  max-width: 75rem;
-  align-items: center;
-  justify-self: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-`
-const Grid = styled.div`
-  display: grid;
-  width: 100%;
-`
+import {
+  BodyWrapper,
+  Grid } from './styles/global'
 
 const history = createHistory()
 
 class App extends Component {
   state = {
     data: [],
-    step: history.location.pathname,
+    step: '',
     required: false,
     disabled: true,
   }
 
+  // Fetch data and listen the history changes
   componentDidMount () {
     const url = `https://api.myjson.com/bins/sf7fw`
     fetch(url)
@@ -44,6 +30,8 @@ class App extends Component {
     })
   }
 
+  // Next step button with validation to prevent going
+  // to confirmation without selecting one main course
   nextStep = (e) => {
     e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
@@ -55,6 +43,7 @@ class App extends Component {
     }
   }
 
+  // Previous step
   previousStep = (e) => {
     e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
@@ -67,6 +56,7 @@ class App extends Component {
     })
   }
 
+  // When a course is selected
   update = (id) => {
     let data = [...this.state.data]
     let item = {
@@ -82,7 +72,8 @@ class App extends Component {
         ...item,
         courseType: item.courseType.filter(x => x === 4) }))
         .filter(x => x.courseType.length > 0 && x.selected === true )
-
+      // if the user is on the maincourse page and has selected one item
+      // we set required and disabled to false and the next pages are available
       if(history.location.pathname === '/4' && MainCourse.length > 0) {
         this.setState({
           required: false,
@@ -97,6 +88,8 @@ class App extends Component {
     })
   }
 
+  // Alert message to show on the Main Course page if the user
+  // has not selected one
   handleRequired = () => {
     const MainCourse = this.state.data && this.state.data.map(item => ({
       ...item,
@@ -112,8 +105,7 @@ class App extends Component {
 
   render () {
     return (
-      <Wrapper>
-        {console.log(this.state.step)}
+      <BodyWrapper>
         <Grid>
           <Router history={history}>
             <Menu
@@ -129,7 +121,7 @@ class App extends Component {
             />
           </Router>
         </Grid>
-      </Wrapper>
+      </BodyWrapper>
     )
   }
 }

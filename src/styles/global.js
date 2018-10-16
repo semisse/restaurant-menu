@@ -1,6 +1,24 @@
 import styled from 'styled-components';
 import Close from '../img/close.svg'
 
+// Grid
+export const BodyWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 75rem;
+  align-items: center;
+  justify-self: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+`
+
+export const Grid = styled.div`
+  display: grid;
+  width: 100%;
+`
+
 //Buttons
 export const Button = styled.a`
   width: 7rem;
@@ -17,6 +35,10 @@ export const Button = styled.a`
   }
   &.next, &.submit{
     float: right
+  }
+  &.disabled {
+    pointer-events: none;
+    opacity: .5
   }
   &:hover {
     border: 0.1875rem solid #54B46D;
