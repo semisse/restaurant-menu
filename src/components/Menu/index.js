@@ -12,6 +12,7 @@ import Map from '../Map'
 import Navigation from '../Navigation'
 
 class Menu extends Component {
+  // Depending on the url, render components
   renderStep = (step) => {
     switch (step) {
       case '/1':
@@ -65,10 +66,24 @@ class Menu extends Component {
           />} />
     }
   }
+
+  // Check if there is at least one main course selected, if not
+  // redirect users to Main Course section
+  redirect = () => {
+    console.log(this.props.step)
+    if ((this.props.step === '/5' || this.props.step === '/6') && this.props.disabled === true) {
+      return <Redirect to='/4' />
+    }
+  }
   render () {
     return (
       <div>
-        <Map history={this.props.history} data={this.props.data} disabled={this.props.disabled} />
+        <Map
+          history={this.props.history}
+          data={this.props.data}
+          disabled={this.props.disabled}
+        />
+        {this.redirect()}
         <Switch>
           {this.renderStep(this.props.history.location.pathname)}
           <Route path='*' render={() => <Redirect to='/0' /> } />
@@ -76,10 +91,8 @@ class Menu extends Component {
         <Navigation
           nextStep={this.props.nextStep}
           previousStep={this.props.previousStep}
-          data={this.props.data}
           pathname={this.props.pathname}
-          step={this.props.step}
-          disabled={this.props.disabled}
+          required={this.props.required}
         />
       </div>
     )

@@ -23,6 +23,10 @@ class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({ data }))
 
+    this.setState({
+      step: history.location.pathname
+    })
+
     history.listen(location => {
       this.setState({
         step: location.pathname
