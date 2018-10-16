@@ -22,10 +22,10 @@ export default class Pager extends Component {
   render() {
     const Navlink = styled(NavLink)`
       width: 14%;
-      height: 50px;
+      height: 3.125rem;
       display: inline-block;
       margin: 0;
-      margin-top: 40px
+      margin-top: 2.5rem;
       position: relative;
       text-align: center;
       text-decoration: none;
@@ -33,7 +33,7 @@ export default class Pager extends Component {
       transition: all .2s ease;
       &.completed > div > span {
         background: url(${Checked}) no-repeat center center;
-        background-size: 10px 10px;
+        background-size: 0.625rem 0.625rem;
       }
       &.disabled, &[disabled] {
         pointer-events: none;
@@ -53,14 +53,14 @@ export default class Pager extends Component {
         & > div > span:before {
           content: '';
           position: absolute;
-          width: 6px;
-          height: 6px;
+          width: 0.375rem;
+          height: 0.375rem;
           background: green;
           border-radius: 50%;
           top: 50%;
           left: 50%;
-          margin-top: -3px;
-          margin-left: -3px;
+          margin-top: -0.1875rem;
+          margin-left: -0.1875rem;
           transition: all .2s ease;
         }
         &.completed {
@@ -71,19 +71,19 @@ export default class Pager extends Component {
       }
       &:before {
         position: absolute;
-        top: 10px;
+        top: 0.625rem;
         left: 0;
-        width: 40px;
-        height: 1px;
+        width: 2.5rem;
+        height: 0.0625rem;
         background: olive;
         content: ''
       }
       &:after {
         position: absolute;
-        top: 10px;
+        top: 0.625rem;
         right: 0;
-        width: 40px;
-        height: 1px;
+        width: 2.5rem;
+        height: 0.0625rem;
         background: olive;
         content: ''
       }
@@ -108,16 +108,16 @@ export default class Pager extends Component {
 
     const StepName = styled.div`
       color: grey;
-      margin-top: 10px;
+      margin-top: 0.625rem;
     `
     const Icon = styled.span`
-      width: 20px;
-      height: 20px;
+      width: 1.25rem;
+      height: 1.25rem;
       border-radius: 50%;
       display: block;
       margin: 0 auto;
       position: relative;
-      border: 1px solid grey;
+      border: 0.0625rem solid grey;
       transition: all 2s ease;
     `
     return (

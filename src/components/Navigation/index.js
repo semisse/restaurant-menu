@@ -9,7 +9,7 @@ const Button = styled.a`
   cursor: pointer;
   text-align: center;
   color: white;
-  border: 3px solid white
+  border: 0.1875rem solid white
   transition: border .2s ease, background .2s ease, color .2s ease;
   &.previous{
     float: left
@@ -18,7 +18,7 @@ const Button = styled.a`
     float: right
   }
   &:hover {
-    border: 3px solid #54B46D;
+    border: 0.1875rem solid #54B46D;
     background: white;
     color: #54B46D;
     font-weight: bold;

@@ -7,7 +7,7 @@ import Menu from './components/Menu'
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 75rem;
   align-items: center;
   justify-self: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
