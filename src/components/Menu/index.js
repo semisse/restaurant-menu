@@ -8,11 +8,11 @@ import Salad from '../Salad'
 import Maincourse from '../Maincourse'
 import Desert from '../Desert'
 import Confirmation from '../Confirmation'
-import Pager from '../Pager'
+import Map from '../Map'
 import Navigation from '../Navigation'
 
 class Menu extends Component {
-  renderStep (step) {
+  renderStep = (step) => {
     switch (step) {
       case '/1':
         return <Route path='/1' render={() => <Soup data={this.props.data} update={this.props.update} />} />
@@ -33,7 +33,7 @@ class Menu extends Component {
   render () {
     return (
       <div>
-        <Pager history={this.props.history} data={this.props.data} disabled={this.props.disabled} />
+        <Map history={this.props.history} data={this.props.data} disabled={this.props.disabled} />
         <Switch>
           {this.renderStep(this.props.history.location.pathname)}
           <Route path='*' render={() => <Redirect to='/0' /> } />

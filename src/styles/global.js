@@ -1,6 +1,35 @@
 import styled from 'styled-components';
 import Close from '../img/close.svg'
 
+//Buttons
+export const Button = styled.a`
+  width: 7rem;
+  background: #54B46D;
+  padding: 1.5rem 3rem;
+  margin: calc(2*2rem) 0
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  border: 0.1875rem solid white
+  transition: border .2s ease, background .2s ease, color .2s ease;
+  &.previous{
+    float: left
+  }
+  &.next, &.submit{
+    float: right
+  }
+  &:hover {
+    border: 0.1875rem solid #54B46D;
+    background: white;
+    color: #54B46D;
+    font-weight: bold;
+  }
+  &:active {
+    background: #54B46D;
+    color: white;
+  }
+`
+
 export const StepTitle = styled.h1`
   background: white;
   border: 0.1875rem solid #54B46D;

@@ -24,18 +24,11 @@ const Grid = styled.div`
 const history = createHistory()
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      data: [],
-      step: history.location.pathname,
-      required: false,
-      disabled: true,
-    }
-    this.nextStep = this.nextStep.bind(this)
-    this.previousStep = this.previousStep.bind(this)
-    this.update = this.update.bind(this)
-    this.handleRequired = this.handleRequired.bind(this)
+  state = {
+    data: [],
+    step: history.location.pathname,
+    required: false,
+    disabled: true,
   }
 
   componentDidMount () {
@@ -49,10 +42,9 @@ class App extends Component {
         step: location.pathname
       })
     })
-
   }
 
-  nextStep (e) {
+  nextStep = (e) => {
     e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
     const newPage = parseInt(noSlashes) + parseInt(1)
@@ -63,7 +55,7 @@ class App extends Component {
     }
   }
 
-  previousStep (e) {
+  previousStep = (e) => {
     e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
     const newPage = parseInt(noSlashes) - parseInt(1)
@@ -75,7 +67,7 @@ class App extends Component {
     })
   }
 
-  update (id) {
+  update = (id) => {
     let data = [...this.state.data]
     let item = {
       ...data[id],
@@ -105,7 +97,7 @@ class App extends Component {
     })
   }
 
-  handleRequired () {
+  handleRequired = () => {
     const MainCourse = this.state.data && this.state.data.map(item => ({
       ...item,
       courseType: item.courseType.filter(x => x === 4) }))
@@ -117,8 +109,6 @@ class App extends Component {
       })
     }
   }
-
-
 
   render () {
     return (
@@ -136,7 +126,7 @@ class App extends Component {
               pathname={history.location.pathname}
               previousStep={this.previousStep}
               nextStep={this.nextStep}
-              />
+            />
           </Router>
         </Grid>
       </Wrapper>

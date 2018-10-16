@@ -8,18 +8,12 @@ import {
 import Allergy from '../Allergy'
 
 export default class Confirmation extends Component {
-  constructor (props) {
-    super (props)
-    this.coursesByType = this.coursesByType.bind(this)
-    this.allergyInfo = this.allergyInfo.bind(this)
-  }
-
-  coursesByType(Type) {
+  coursesByType = (Type) => {
     const courses = this.props.data.filter(item => item.selected && item.courseType[0] === Type)
     return courses
   }
 
-  allergyInfo(){
+  allergyInfo = () => {
     const allergy = this.props.data.filter(item => item.selected && item.allery.length !== 0)
     if (allergy.length !== 0){
       return true
