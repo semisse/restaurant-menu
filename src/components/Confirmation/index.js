@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import {
   StepTitle,
   Type,
   List,
   CourseThumbImageCircle,
-  CourseThumbImage } from '../../styles/global'
+  CourseThumbImage,
+  Column } from '../../styles/global'
 import Allergy from '../Allergy'
+
+const ColumnConfirmation = styled(Column)`
+  grid-template-columns: auto;
+`
 
 export default class Confirmation extends Component {
   coursesByType = (Type) => {
@@ -25,72 +31,74 @@ export default class Confirmation extends Component {
       <div>
         <StepTitle>Confirmation</StepTitle>
         {this.allergyInfo() && <Allergy data={this.props.data} />}
-        {this.coursesByType(0).length > 0 && <Type>Hors d'oeuvres</Type>}
-        {this.coursesByType(0).map(item =>
-          <div key={item.id}>
-            <List key={item.id}>
-              <CourseThumbImageCircle>
-                <CourseThumbImage src={item.image} alt={item.title} />
-              </CourseThumbImageCircle>
-              {item.title}
-            </List>
-          </div>
-        )}
-        {this.coursesByType(1).length > 0 && <Type>Soup</Type>}
-        {this.coursesByType(1).map(item =>
-          <div key={item.id}>
-            <List key={item.id}>
-              <CourseThumbImageCircle>
-                <CourseThumbImage src={item.image} alt={item.title} />
-              </CourseThumbImageCircle>
-              {item.title}
-            </List>
-          </div>
-        )}
-        {this.coursesByType(2).length > 0 && <Type>Fish</Type>}
-        {this.coursesByType(2).map(item =>
-          <div key={item.id}>
-            <List key={item.id}>
-              <CourseThumbImageCircle>
-                <CourseThumbImage src={item.image} alt={item.title} />
-              </CourseThumbImageCircle>
-              {item.title}
-            </List>
-          </div>
-        )}
-        {this.coursesByType(3).length > 0 && <Type>Salad</Type>}
-        {this.coursesByType(3).map(item =>
-          <div key={item.id}>
-            <List key={item.id}>
-              <CourseThumbImageCircle>
-                <CourseThumbImage src={item.image} alt={item.title} />
-              </CourseThumbImageCircle>
-              {item.title}
-            </List>
-          </div>
-        )}
-        {this.coursesByType(4).length > 0 && <Type>Main Course</Type>}
-        {this.coursesByType(4).map(item =>
-          <div key={item.id}>
-            <List key={item.id}>
-              <CourseThumbImageCircle>
-                <CourseThumbImage src={item.image} alt={item.title} />
-              </CourseThumbImageCircle>
-              {item.title}
-            </List>
-          </div>
-        )}
-        {this.coursesByType(5).length > 0 && <Type>Dessert</Type>}
-        {this.coursesByType(5).map(item =>
-          <div key={item.id}>
-            <List key={item.id}>
-              <CourseThumbImageCircle>
-                <CourseThumbImage src={item.image} alt={item.title} />
-              </CourseThumbImageCircle>
-              {item.title}
-            </List>
-          </div>
-        )}
+        <ColumnConfirmation>
+          {this.coursesByType(0).length > 0 && <Type>Hors d'oeuvres</Type>}
+          {this.coursesByType(0).map(item =>
+            <div key={item.id}>
+              <List key={item.id}>
+                <CourseThumbImageCircle>
+                  <CourseThumbImage src={item.image} alt={item.title} />
+                </CourseThumbImageCircle>
+                {item.title}
+              </List>
+            </div>
+          )}
+          {this.coursesByType(1).length > 0 && <Type>Soup</Type>}
+          {this.coursesByType(1).map(item =>
+            <div key={item.id}>
+              <List key={item.id}>
+                <CourseThumbImageCircle>
+                  <CourseThumbImage src={item.image} alt={item.title} />
+                </CourseThumbImageCircle>
+                {item.title}
+              </List>
+            </div>
+          )}
+          {this.coursesByType(2).length > 0 && <Type>Fish</Type>}
+          {this.coursesByType(2).map(item =>
+            <div key={item.id}>
+              <List key={item.id}>
+                <CourseThumbImageCircle>
+                  <CourseThumbImage src={item.image} alt={item.title} />
+                </CourseThumbImageCircle>
+                {item.title}
+              </List>
+            </div>
+          )}
+          {this.coursesByType(3).length > 0 && <Type>Salad</Type>}
+          {this.coursesByType(3).map(item =>
+            <div key={item.id}>
+              <List key={item.id}>
+                <CourseThumbImageCircle>
+                  <CourseThumbImage src={item.image} alt={item.title} />
+                </CourseThumbImageCircle>
+                {item.title}
+              </List>
+            </div>
+          )}
+          {this.coursesByType(4).length > 0 && <Type>Main Course</Type>}
+          {this.coursesByType(4).map(item =>
+            <div key={item.id}>
+              <List key={item.id}>
+                <CourseThumbImageCircle>
+                  <CourseThumbImage src={item.image} alt={item.title} />
+                </CourseThumbImageCircle>
+                {item.title}
+              </List>
+            </div>
+          )}
+          {this.coursesByType(5).length > 0 && <Type>Dessert</Type>}
+          {this.coursesByType(5).map(item =>
+            <div key={item.id}>
+              <List key={item.id}>
+                <CourseThumbImageCircle>
+                  <CourseThumbImage src={item.image} alt={item.title} />
+                </CourseThumbImageCircle>
+                {item.title}
+              </List>
+            </div>
+          )}
+        </ColumnConfirmation>
       </div>
     )
   }

@@ -5,7 +5,7 @@ import {
   CourseImage,
   Description,
   Spice,
-  Card } from './styles'
+  Card } from '../../styles/global'
 
 export default class Course extends Component {
 
