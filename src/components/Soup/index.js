@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Course from '../Course'
 import { StepTitle } from '../../styles/global'
 
@@ -15,4 +16,9 @@ export default class Soup extends Component {
       </div>
     )
   }
+}
+
+Soup.propTypes = {
+  data: PropTypes.array,
+  update: PropTypes.func
 }

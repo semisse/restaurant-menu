@@ -52,6 +52,7 @@ export const Button = styled.a`
   }
 `
 
+// Section titles
 export const StepTitle = styled.h1`
   background: white;
   border: 0.1875rem solid #54B46D;
@@ -100,7 +101,7 @@ export const ModalDiv = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   &.display-block {
@@ -115,11 +116,12 @@ export const ModalSection = styled.section`
   position: fixed;
   background: white;
   width: 50%;
-  height: auto;
+  height: calc(100vh - 200px);
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   padding: 4rem 1rem;
+  overflow-y: auto;
 `
 
 export const CloseButton = styled.button`

@@ -12,7 +12,6 @@ export const Navlink = styled(NavLink)`
   text-align: center;
   text-decoration: none;
   font-size: .8rem;
-  transition: all .2s ease;
   &.completed > div > span {
     background: url(${Checked}) no-repeat center center;
     background-size: 0.625rem 0.625rem;
@@ -25,7 +24,6 @@ export const Navlink = styled(NavLink)`
   }
   &.active > div > span {
     background: green;
-    transition: all .2s;
   }
   &.active > div > div {
     color: green
@@ -101,5 +99,5 @@ export const Icon = styled.span`
   margin: 0 auto;
   position: relative;
   border: 0.0625rem solid grey;
-  transition: all 2s ease;
+  transition: all .2s ease;
 `

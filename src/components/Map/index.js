@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   Navlink,
   Step,
@@ -7,6 +8,8 @@ import {
 
 export default class Map extends Component {
 
+  // Check if the section has already some courses selected,
+  // and add a check mark
   select = (page) => {
     const pageSelected = this.props.data && this.props.data.map(item => ({
       ...item,
@@ -14,7 +17,6 @@ export default class Map extends Component {
       .filter(x => x.courseType.length > 0 && x.selected === true)
     return pageSelected
   }
-
   render() {
     return (
       <div>
@@ -22,7 +24,7 @@ export default class Map extends Component {
           <Step>
             <Icon />
             <StepName>
-              Hors
+              Hors d'oeuvres
             </StepName>
           </Step>
         </Navlink>
@@ -63,7 +65,7 @@ export default class Map extends Component {
           </Step>
         </Navlink>
 
-        <Navlink to='/5' className={this.props.disabled === true ? 'disabled' : this.select(5).length > 0 && 'completed'} >
+        <Navlink to='/5' className={this.props.disabled ? 'disabled' : this.select(5).length > 0 && 'completed'} >
           <Step>
             <Icon />
             <StepName>
@@ -72,7 +74,7 @@ export default class Map extends Component {
           </Step>
         </Navlink>
 
-        <Navlink to='/6' className={this.props.disabled === true ? 'disabled' : this.select(6).length > 0 && 'completed'} >
+        <Navlink to='/6' className={this.props.disabled ? 'disabled' : this.select(6).length > 0 && 'completed'} >
           <Step>
             <Icon />
             <StepName>
@@ -83,4 +85,9 @@ export default class Map extends Component {
       </div>
     )
   }
+}
+
+Map.propTypes = {
+  data: PropTypes.array,
+  disabled: PropTypes.bool
 }

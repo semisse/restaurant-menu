@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Course from '../Course'
 import { StepTitle } from '../../styles/global'
 
-export default class Desert extends Component {
+export default class Dessert extends Component {
   componentDidMount() {
     this.props.handleRequired()
   }
@@ -18,4 +19,10 @@ export default class Desert extends Component {
       </div>
     )
   }
+}
+
+Dessert.propTypes = {
+  data: PropTypes.array,
+  update: PropTypes.func,
+  handleRequired: PropTypes.func
 }

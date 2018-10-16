@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Router } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 import Menu from './components/Menu'
@@ -128,6 +129,19 @@ class App extends Component {
       </BodyWrapper>
     )
   }
+}
+
+App.protoTypes = {
+  step: PropTypes.string,
+  disabled: PropTypes.bool,
+  history: PropTypes.object,
+  data: PropTypes.array,
+  nextStep: PropTypes.func,
+  previousStep: PropTypes.func,
+  pathname: PropTypes.string,
+  required: PropTypes.bool,
+  update: PropTypes.func,
+  url: PropTypes.string
 }
 
 export default App

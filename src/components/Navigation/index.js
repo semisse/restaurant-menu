@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Button } from '../../styles/global'
 
 export default class Navigation extends Component {
@@ -16,9 +17,21 @@ export default class Navigation extends Component {
           <Button className={'submit'}>Submit</Button> :
           <Button
             onClick={e => this.props.nextStep(e)}
-            className={this.props.required === true ? 'next disabled' : 'next'}> Next</Button>
+            className={this.props.required ?
+              'next disabled' :
+              'next'}>
+              Next
+          </Button>
         }
       </div>
     )
   }
+}
+
+Navigation.propTypes = {
+  data: PropTypes.array,
+  pathname: PropTypes.string,
+  previousStep: PropTypes.func,
+  nextStep: PropTypes.func,
+  required: PropTypes.bool
 }

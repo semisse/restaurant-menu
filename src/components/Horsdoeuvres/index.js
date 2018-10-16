@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Course from '../Course'
 import { StepTitle } from '../../styles/global'
 
@@ -10,9 +11,14 @@ export default class Horsdoeuvres extends Component {
       .filter(x => x.courseType.length > 0)
     return (
       <div>
-        <StepTitle>hors d'oeuvres</StepTitle>
+        <StepTitle>Hors d'oeuvres</StepTitle>
         <Course filteredCourseType={filteredCourseType} update={this.props.update} />
       </div>
     )
   }
+}
+
+Horsdoeuvres.propTypes = {
+  data: PropTypes.array,
+  update: PropTypes.func
 }

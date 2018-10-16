@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 import Horsdoeuvres from '../Horsdoeuvres'
 import Soup from '../Soup'
 import Fish from '../Fish'
 import Salad from '../Salad'
 import Maincourse from '../Maincourse'
-import Desert from '../Desert'
+import Dessert from '../Dessert'
 import Confirmation from '../Confirmation'
 import Map from '../Map'
 import Navigation from '../Navigation'
@@ -44,7 +44,7 @@ class Menu extends Component {
           />} />
       case '/5':
         return <Route path='/5' render={() =>
-          <Desert
+          <Dessert
             data={this.props.data}
             update={this.props.update}
             handleRequired={this.props.handleRequired}
@@ -70,7 +70,6 @@ class Menu extends Component {
   // Check if there is at least one main course selected, if not
   // redirect users to Main Course section
   redirect = () => {
-    console.log(this.props.step)
     if ((this.props.step === '/5' || this.props.step === '/6') && this.props.disabled === true) {
       return <Redirect to='/4' />
     }
@@ -97,6 +96,18 @@ class Menu extends Component {
       </div>
     )
   }
+}
+
+Menu.propTypes = {
+  step: PropTypes.string,
+  disabled: PropTypes.bool,
+  history: PropTypes.object,
+  data: PropTypes.array,
+  nextStep: PropTypes.func,
+  previousStep: PropTypes.func,
+  pathname: PropTypes.string,
+  required: PropTypes.bool,
+  update: PropTypes.func
 }
 
 export default withRouter(Menu)
