@@ -4,13 +4,17 @@ import styled from 'styled-components'
 import createHistory from 'history/createBrowserHistory'
 
 import Menu from './components/Menu'
-import Navigation from './components/Navigation'
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1200px;
   align-items: center;
   justify-self: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `
 const Grid = styled.div`
   display: grid;
@@ -53,7 +57,8 @@ class App extends Component {
     const noSlashes = history.location.pathname.replace(/\//g, '')
     const newPage = parseInt(noSlashes) + parseInt(1)
 
-    if (history.location.pathname !== '/4' && this.state.required === false || history.location.pathname !== '/5' && this.state.required === false) {
+    if ((history.location.pathname !== '/4' && this.state.required === false)
+        || (history.location.pathname !== '/5' && this.state.required === false)) {
       history.push('/' + newPage)
     }
   }

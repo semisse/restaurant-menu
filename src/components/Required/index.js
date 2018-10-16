@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import styled, { css } from 'styled-components'
+import { Wrapper, Warning } from '../../styles/global'
 
 export default class Required extends Component {
   render() {
     return (
-      <div>
-        Please select one main course! :)
-      </div>
+      <Wrapper>
+        <Warning>
+          Please select at least one main course! :)
+        </Warning>
+      </Wrapper>
     )
   }
 }
