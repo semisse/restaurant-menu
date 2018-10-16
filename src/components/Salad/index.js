@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Course from '../Course'
+import { StepTitle } from '../../styles/global'
 
 export default class Salad extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class Salad extends Component {
       .filter(x => x.courseType.length > 0)
     return (
       <div>
-        <h1>Salad</h1>
+        <StepTitle>Salad</StepTitle>
         <Course filteredCourseType={filteredCourseType} update={this.props.update} />
       </div>
     )

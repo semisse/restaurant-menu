@@ -37,6 +37,9 @@ export default class Pager extends Component {
       }
       &.disabled, &[disabled] {
         pointer-events: none;
+        & div > span, & div > div {
+          opacity: .3
+        }
       }
       &.active > div > span {
         background: green;

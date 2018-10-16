@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
-
 import Required from '../Required'
-
 import Chilli from '../../img/spice.svg'
 import Close from '../../img/close.svg'
 
@@ -73,17 +71,17 @@ export default class Course extends Component {
         box-shadow: 0 5px 10px 1px rgba(0,0,0,0.20);
       }
       ${({ selected }) => selected && css`
-        border: 5px solid #ff6e59;
+        border: 3px solid #539480;
         &:after{
           position: absolute;
-          top: -8px;
+          top: -13px;
           right: -8px;
           width: 30px;
           height: 30px;
           border-radius: 50%;
           background: white url(${Close}) no-repeat center center;
           background-size: 50%;
-          border: 2px solid black;
+          border: 2px solid #B2B2B2;
           content: '';
         }
       `}

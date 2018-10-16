@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Course from '../Course'
+import { StepTitle } from '../../styles/global'
 
 export default class Maincourse extends Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ export default class Maincourse extends Component {
       .filter(x => x.courseType.length > 0)
     return (
       <div>
-        <h1>Main Course</h1>
+        <StepTitle>Main Course</StepTitle>
         <Course filteredCourseType={filteredCourseType} data={this.props.data} update={this.props.update} required={this.props.required} pathname={this.props.pathname} />
       </div>
     )

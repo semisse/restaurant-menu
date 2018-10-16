@@ -4,9 +4,17 @@ import styled from 'styled-components'
 import createHistory from 'history/createBrowserHistory'
 
 import Menu from './components/Menu'
+import Navigation from './components/Navigation'
 
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 900px;
+  align-items: center;
+  justify-self: center;
+`
 const Grid = styled.div`
   display: grid;
+  width: 100%;
 `
 
 const history = createHistory()
@@ -16,7 +24,7 @@ class App extends Component {
     super(props)
     this.state = {
       data: [],
-      step: 0,
+      step: history.location.pathname,
       required: false,
       disabled: true,
     }
@@ -31,18 +39,27 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => this.setState({ data }))
+
+    history.listen(location => {
+      this.setState({
+        step: location.pathname
+      })
+    })
+
   }
 
-  nextStep () {
+  nextStep (e) {
+    e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
     const newPage = parseInt(noSlashes) + parseInt(1)
 
-    if (noSlashes <= 5 && this.state.required === false) {
+    if (history.location.pathname !== '/4' && this.state.required === false || history.location.pathname !== '/5' && this.state.required === false) {
       history.push('/' + newPage)
     }
   }
 
-  previousStep () {
+  previousStep (e) {
+    e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
     const newPage = parseInt(noSlashes) - parseInt(1)
     if (noSlashes > 0) {
@@ -83,7 +100,7 @@ class App extends Component {
     })
   }
 
-  handleRequired (){
+  handleRequired () {
     const MainCourse = this.state.data && this.state.data.map(item => ({
       ...item,
       courseType: item.courseType.filter(x => x === 4) }))
@@ -96,23 +113,28 @@ class App extends Component {
     }
   }
 
+
+
   render () {
     return (
-      <div>
+      <Wrapper>
+        {console.log(this.state.step)}
         <Grid>
           <Router history={history}>
-            <div>
-              <button onClick={this.previousStep}>Previous</button>
-              <button onClick={this.nextStep}>Next</button>
-              <Menu data={this.state.data} required={this.state.required} handleRequired={this.handleRequired} disabled={this.state.disabled} update={this.update} />
-            </div>
+            <Menu
+              data={this.state.data}
+              step={this.state.step}
+              required={this.state.required}
+              handleRequired={this.handleRequired}
+              disabled={this.state.disabled}
+              update={this.update}
+              pathname={history.location.pathname}
+              previousStep={this.previousStep}
+              nextStep={this.nextStep}
+              />
           </Router>
-          <div>
-            <button onClick={this.previousStep}>Previous</button>
-            <button onClick={this.nextStep}>Next</button>
-          </div>
         </Grid>
-      </div>
+      </Wrapper>
     )
   }
 }

@@ -9,6 +9,7 @@ import Maincourse from '../Maincourse'
 import Desert from '../Desert'
 import Confirmation from '../Confirmation'
 import Pager from '../Pager'
+import Navigation from '../Navigation'
 
 class Menu extends Component {
   renderStep (step) {
@@ -24,7 +25,7 @@ class Menu extends Component {
       case '/5':
         return <Route path='/5' render={() => <Desert data={this.props.data} update={this.props.update} handleRequired={this.props.handleRequired} />} />
       case '/6':
-        return <Route path='/6' render={() => <Confirmation data={this.props.data} update={this.props.update} handleRequired={this.props.handleRequired} />} />
+        return <Route path='/6' render={() => <Confirmation data={this.props.data} update={this.props.update} handleRequired={this.props.handleRequired} pathname={this.props.history.location.pathname} step={this.props.step} />} />
       default:
         return <Route path='/0' render={() => <Horsdoeuvres data={this.props.data} update={this.props.update} />} />
     }
@@ -37,6 +38,13 @@ class Menu extends Component {
           {this.renderStep(this.props.history.location.pathname)}
           <Route path='*' render={() => <Redirect to='/0' /> } />
         </Switch>
+        <Navigation
+          nextStep={this.props.nextStep}
+          previousStep={this.props.previousStep}
+          data={this.props.data}
+          pathname={this.props.pathname}
+          step={this.props.step}
+        />
       </div>
     )
   }

@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { StepTitle } from '../../styles/global'
+
+const Type = styled.h3`
+  font-size: 1.5rem;
+  padding-left: 5rem;
+  color: #54B46D;
+`
+
+const List = styled.li`
+  list-style: none;
+  padding: 0 5rem 1rem 5rem;
+  display: flex;
+  align-items: center;
+`
 
 const Image = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: inline-block;
+  margin-right: 1rem;
 `
 
 const Title = styled.li`
 `
 
 export default class Confirmation extends Component {
-
   constructor (props) {
     super (props)
     this.coursesByType = this.coursesByType.bind(this)
@@ -26,57 +40,62 @@ export default class Confirmation extends Component {
   render() {
     return (
       <div>
-        <h1>Confirmation</h1>
+        <StepTitle>Confirmation</StepTitle>
 
+        {this.coursesByType(0).length > 0 && <Type>Hors d'oeuvres</Type>}
         {this.coursesByType(0).map(item =>
           <div key={item.id}>
-            <h3>Hors d'oeuvres</h3>
-            <li key={item.id}>
+            <List key={item.id}>
               <Image src={item.image} alt={item.title} />
               {item.title}
-            </li>
+            </List>
           </div>
         )}
-
+        {this.coursesByType(1).length > 0 && <Type>Soup</Type>}
         {this.coursesByType(1).map(item =>
           <div key={item.id}>
-            <h3>Soup</h3>
-            <Image src={item.image} alt={item.title} />
-            <li key={item.id}>{item.title}</li>
-          </div>
-        )}
-
-        {this.coursesByType(2).map(item =>
-          <div key={item.id}>
-            <h3>Fish</h3>
-            <Image src={item.image} alt={item.title} />
-            <li key={item.id}>{item.title}</li>
-          </div>
-        )}
-
-        {this.coursesByType(3).map(item =>
-          <div key={item.id}>
-            <h3>Salad</h3>
-            <Image src={item.image} alt={item.title} />
-            <li key={item.id}>{item.title}</li>
-          </div>
-        )}
-
-        {this.coursesByType(4).map(item =>
-          <div key={item.id}>
-            <h3>Main Course</h3>
-            <Image src={item.image} alt={item.title} />
-            <li key={item.id}>{item.title}</li>
-          </div>
-        )}
-
-        {this.coursesByType(5).map(item =>
-          <div key={item.id}>
-            <h3>Desert</h3>
-            <li key={item.id}>
+            <List key={item.id}>
               <Image src={item.image} alt={item.title} />
               {item.title}
-            </li>
+            </List>
+          </div>
+        )}
+        {this.coursesByType(2).length > 0 && <Type>Fish</Type>}
+        {this.coursesByType(2).map(item =>
+          <div key={item.id}>
+            <List key={item.id}>
+              <Image src={item.image} alt={item.title} />
+              {item.title}
+            </List>
+          </div>
+        )}
+        {this.coursesByType(3).length > 0 && <Type>Salad</Type>}
+        {this.coursesByType(3).map(item =>
+          <div key={item.id}>
+            <List key={item.id}>
+              <Image src={item.image} alt={item.title} />
+              {item.title}
+            </List>
+          </div>
+        )}
+
+        {this.coursesByType(4).length > 0 && <Type>Main Course</Type>}
+        {this.coursesByType(4).map(item =>
+          <div key={item.id}>
+            <List key={item.id}>
+              <Image src={item.image} alt={item.title} />
+              {item.title}
+            </List>
+          </div>
+        )}
+
+        {this.coursesByType(5).length > 0 && <Type>Dessert</Type>}
+        {this.coursesByType(5).map(item =>
+          <div key={item.id}>
+            <List key={item.id}>
+              <Image src={item.image} alt={item.title} />
+              {item.title}
+            </List>
           </div>
         )}
       </div>

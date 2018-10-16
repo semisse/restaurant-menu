@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Course from '../Course'
+import { StepTitle } from '../../styles/global'
 
 export default class Horsdoeuvres extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class Horsdoeuvres extends Component {
       .filter(x => x.courseType.length > 0)
     return (
       <div>
-        <h1>hors d'oeuvres</h1>
+        <StepTitle>hors d'oeuvres</StepTitle>
         <Course filteredCourseType={filteredCourseType} update={this.props.update} />
       </div>
     )
