@@ -28,6 +28,14 @@ export default class Allergy extends Component {
     })
   }
 
+  escFunction = (e) => {
+    e.keyCode === 27 && this.setState({ show: false })
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.escFunction, false)
+  }
+
   render() {
     return (
       <Wrapper>
@@ -64,6 +72,7 @@ const Modal = ({ handleClose, show, children }) => {
   return (
     <ModalDiv className={show ? "display-block" : "display-none"}>
       <ModalSection>
+        <h1>Courses containing allergenic ingredients</h1>
         {children}
         <CloseButton onClick={handleClose}>close</CloseButton>
       </ModalSection>

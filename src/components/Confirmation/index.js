@@ -14,11 +14,8 @@ const ColumnConfirmation = styled(Column)`
 `
 
 export default class Confirmation extends Component {
-  coursesByType = (Type) => {
-    const courses = this.props.data.filter(item => item.selected && item.courseType[0] === Type)
-    return courses
-  }
-
+  // Check if there is any allergenic ingridient
+  // in the selected courses
   allergyInfo = () => {
     const allergy = this.props.data.filter(item => item.selected && item.allery.length !== 0)
     if (allergy.length !== 0){
@@ -26,78 +23,47 @@ export default class Confirmation extends Component {
     }
   }
 
+  // Check if there are any selected courses and list them
+  SelectedCourses = (section) => {
+    const Selection = this.props.data.filter(item => item.selected && item.courseType[0] === section).map(item => {
+      return (
+          <div key={item.id}>
+            <List key={item.id}>
+              <CourseThumbImageCircle>
+                <CourseThumbImage src={item.image} alt={item.title} />
+              </CourseThumbImageCircle>
+              {item.title}
+            </List>
+          </div>
+        )
+      })
+    return Selection
+  }
+
+  // Grab the results from SelectedCourses() and separate
+  // them through sections
+  Results = () => {
+    const Titles = ['Hors d\'oeuvres', 'Soup', 'Fish', 'Salad', 'Main Course', 'Dessert']
+    const TitlesAndCourses = Titles.map((item, i) => {
+      if(this.SelectedCourses(i).length > 0){
+          return (
+            <div key={i}>
+              <Type>{item}</Type>
+              {this.SelectedCourses(i)}
+            </div>
+          )
+        }
+      }
+    )
+    return TitlesAndCourses
+  }
   render() {
     return (
       <div>
         <StepTitle>Confirmation</StepTitle>
         {this.allergyInfo() && <Allergy data={this.props.data} />}
         <ColumnConfirmation>
-          {this.coursesByType(0).length > 0 && <Type>Hors d'oeuvres</Type>}
-          {this.coursesByType(0).map(item =>
-            <div key={item.id}>
-              <List key={item.id}>
-                <CourseThumbImageCircle>
-                  <CourseThumbImage src={item.image} alt={item.title} />
-                </CourseThumbImageCircle>
-                {item.title}
-              </List>
-            </div>
-          )}
-          {this.coursesByType(1).length > 0 && <Type>Soup</Type>}
-          {this.coursesByType(1).map(item =>
-            <div key={item.id}>
-              <List key={item.id}>
-                <CourseThumbImageCircle>
-                  <CourseThumbImage src={item.image} alt={item.title} />
-                </CourseThumbImageCircle>
-                {item.title}
-              </List>
-            </div>
-          )}
-          {this.coursesByType(2).length > 0 && <Type>Fish</Type>}
-          {this.coursesByType(2).map(item =>
-            <div key={item.id}>
-              <List key={item.id}>
-                <CourseThumbImageCircle>
-                  <CourseThumbImage src={item.image} alt={item.title} />
-                </CourseThumbImageCircle>
-                {item.title}
-              </List>
-            </div>
-          )}
-          {this.coursesByType(3).length > 0 && <Type>Salad</Type>}
-          {this.coursesByType(3).map(item =>
-            <div key={item.id}>
-              <List key={item.id}>
-                <CourseThumbImageCircle>
-                  <CourseThumbImage src={item.image} alt={item.title} />
-                </CourseThumbImageCircle>
-                {item.title}
-              </List>
-            </div>
-          )}
-          {this.coursesByType(4).length > 0 && <Type>Main Course</Type>}
-          {this.coursesByType(4).map(item =>
-            <div key={item.id}>
-              <List key={item.id}>
-                <CourseThumbImageCircle>
-                  <CourseThumbImage src={item.image} alt={item.title} />
-                </CourseThumbImageCircle>
-                {item.title}
-              </List>
-            </div>
-          )}
-          {this.coursesByType(5).length > 0 && <Type>Dessert</Type>}
-          {this.coursesByType(5).map(item =>
-            <div key={item.id}>
-              <List key={item.id}>
-                <CourseThumbImageCircle>
-                  <CourseThumbImage src={item.image} alt={item.title} />
-                </CourseThumbImageCircle>
-                {item.title}
-              </List>
-            </div>
-          )}
+        {this.Results()}
         </ColumnConfirmation>
       </div>
     )
