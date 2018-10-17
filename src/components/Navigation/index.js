@@ -3,6 +3,13 @@ import PropTypes from 'prop-types'
 import { Button } from '../../styles/global'
 
 export default class Navigation extends Component {
+  samuel = () => {
+    if (this.props.required  && this.props.pathname === '/4') {
+      return 'next disabled'
+    } else {
+      return 'next'
+    }
+  }
   render() {
     return (
       <div>
@@ -17,12 +24,11 @@ export default class Navigation extends Component {
           <Button className={'submit'}>Submit</Button> :
           <Button
             onClick={e => this.props.nextStep(e)}
-            className={this.props.required ?
-              'next disabled' :
-              'next'}>
+            className={this.samuel()}>
               Next
           </Button>
         }
+        {console.log(this.props.required)}
       </div>
     )
   }

@@ -4,9 +4,6 @@ import Course from '../Course'
 import { StepTitle } from '../../styles/global'
 
 export default class Section extends Component {
-  componentDidMount () {
-    this.props.handleRequired()
-  }
   render () {
     const filteredCourseType = this.props.data && this.props.data.map(item => ({
       ...item,

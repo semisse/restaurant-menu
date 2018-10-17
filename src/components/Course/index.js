@@ -11,6 +11,12 @@ import {
 import Default from '../../img/default.svg'
 
 export default class Course extends Component {
+
+  componentDidMount() {
+    if(this.props.pathname === '/4' || this.props.step === '/4') {
+      this.props.handleRequired()
+    }
+  }
   handleClick = (id) => {
     this.props.update(id)
   }
@@ -21,7 +27,7 @@ export default class Course extends Component {
       courseType: item.courseType.filter(x => x === 4) }))
       .filter(x => x.courseType.length > 0 && x.selected === true)
 
-    if (this.props.pathname === '/4' && this.props.required && pageSelected.length === 0) {
+    if ((this.props.required || this.props.step === '/4') && this.props.pathname === '/4' && pageSelected.length === 0) {
       return <Required />
     }
   }
@@ -32,7 +38,6 @@ export default class Course extends Component {
         <LdsRipple className='ldsRipple'>
           <div></div>
           <div></div>
-          {console.log(this.props.loading)}
         </LdsRipple>
       )
     } else {

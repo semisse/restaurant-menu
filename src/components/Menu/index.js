@@ -89,14 +89,15 @@ class Menu extends Component {
             loading={this.props.loading}
             step={this.props.step}
             category={0}
-          />} />
+          />}
+        />
     }
   }
 
   // Check if there is at least one main course selected, if not
   // redirect users to Main Course section
   redirect = () => {
-    if ((this.props.step === '/5' || this.props.step === '/6') && this.props.disabled === true) {
+    if ((this.props.step === '/5' || this.props.step === '/6') && this.props.required) {
       return <Redirect to='/4' />
     }
   }
@@ -106,7 +107,7 @@ class Menu extends Component {
         <Map
           history={this.props.history}
           data={this.props.data}
-          disabled={this.props.disabled}
+          required={this.props.required}
         />
         {this.redirect()}
         <Switch>
@@ -126,7 +127,6 @@ class Menu extends Component {
 
 Menu.propTypes = {
   step: PropTypes.string,
-  disabled: PropTypes.bool,
   history: PropTypes.object,
   data: PropTypes.array,
   nextStep: PropTypes.func,

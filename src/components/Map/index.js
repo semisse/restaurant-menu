@@ -65,7 +65,7 @@ export default class Map extends Component {
           </Step>
         </Navlink>
 
-        <Navlink to='/5' className={this.props.disabled ? 'disabled' : this.select(5).length > 0 && 'completed'} >
+        <Navlink to='/5' className={this.props.required ? 'disabled' : this.select(5).length > 0 && 'completed'} >
           <Step>
             <Icon />
             <StepName>
@@ -74,7 +74,7 @@ export default class Map extends Component {
           </Step>
         </Navlink>
 
-        <Navlink to='/6' className={this.props.disabled ? 'disabled' : this.select(6).length > 0 && 'completed'} >
+        <Navlink to='/6' className={this.props.required ? 'disabled' : this.select(6).length > 0 && 'completed'} >
           <Step>
             <Icon />
             <StepName>

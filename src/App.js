@@ -13,8 +13,7 @@ class App extends Component {
   state = {
     data: [],
     step: '',
-    required: false,
-    disabled: true,
+    required: true,
     loading: true
   }
 
@@ -36,18 +35,13 @@ class App extends Component {
     })
   }
 
-
   // Next step button with validation to prevent going
   // to confirmation without selecting one main course
   nextStep = (e) => {
     e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
     const newPage = parseInt(noSlashes) + parseInt(1)
-
-    if ((history.location.pathname !== '/4' && this.state.required === false)
-        || (history.location.pathname !== '/5' && this.state.required === false)) {
-      history.push('/' + newPage)
-    }
+    history.push('/' + newPage)
   }
 
   // Previous step
@@ -83,16 +77,22 @@ class App extends Component {
       // we set required and disabled to false and the next pages are available
       if(history.location.pathname === '/4' && MainCourse.length > 0) {
         this.setState({
-          required: false,
-          disabled: false
+          required: false
         })
       } else if (history.location.pathname === '/4' && MainCourse.length === 0) {
         this.setState({
-          required: true,
-          disabled: true
+          required: true
         })
       }
     })
+  }
+
+  MainCourseSelected = () => {
+    const MainCourse = this.state.data && this.state.data.map(item => ({
+      ...item,
+      courseType: item.courseType.filter(x => x === 4) }))
+      .filter(x => x.courseType.length > 0 && x.selected === true )
+    return MainCourse
   }
 
   // Alert message to show on the Main Course page if the user
@@ -107,17 +107,12 @@ class App extends Component {
       this.setState({
         required: true
       })
-    } else {
-      this.setState({
-        required: false
-      })
     }
   }
 
   render () {
     return (
       <BodyWrapper>
-        {console.log(this.state.required, history.location.pathname)}
         <Grid>
           <Router history={history}>
             <Menu
@@ -125,7 +120,6 @@ class App extends Component {
               step={this.state.step}
               required={this.state.required}
               handleRequired={this.handleRequired}
-              disabled={this.state.disabled}
               update={this.update}
               pathname={history.location.pathname}
               previousStep={this.previousStep}
@@ -141,7 +135,6 @@ class App extends Component {
 
 App.protoTypes = {
   step: PropTypes.string,
-  disabled: PropTypes.bool,
   history: PropTypes.object,
   data: PropTypes.array,
   nextStep: PropTypes.func,
