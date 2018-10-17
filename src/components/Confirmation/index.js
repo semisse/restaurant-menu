@@ -7,6 +7,7 @@ import {
   List,
   CourseThumbImageCircle,
   CourseThumbImage,
+  CourseName,
   Column } from '../../styles/global'
 import Allergy from '../Allergy'
 
@@ -33,7 +34,7 @@ export default class Confirmation extends Component {
               <CourseThumbImageCircle>
                 <CourseThumbImage src={item.image} alt={item.title} />
               </CourseThumbImageCircle>
-              {item.title}
+              <CourseName>{item.title}</CourseName>
             </List>
           </div>
         )

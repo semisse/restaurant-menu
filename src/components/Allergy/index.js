@@ -8,6 +8,7 @@ import {
   List,
   CourseThumbImageCircle,
   CourseThumbImage,
+  CourseName,
   AllergyItem,
   CloseButton,
   InlineButton } from '../../styles/global'
@@ -41,7 +42,7 @@ export default class Allergy extends Component {
       <Wrapper>
         <Warning className={'allergy'}>
           <img src={AllergyIcon} className={'Icon'} alt={'allergenic ingredients'} />
-          <p>Some courses in your order may have allergenic ingredients. </p>
+          <p>Some courses in your order may contain allergenic ingredients. </p>
           <InlineButton onClick={this.showModal}>More details</InlineButton>
 
           <Modal show={this.state.show} handleClose={this.hideModal}>
@@ -52,7 +53,7 @@ export default class Allergy extends Component {
                     <CourseThumbImageCircle>
                       <CourseThumbImage src={item.image} alt={item.title} />
                     </CourseThumbImageCircle>
-                    {item.title}
+                    <CourseName>{item.title}</CourseName>
                   </List>
                   <AllergyItem>
                       It contains:

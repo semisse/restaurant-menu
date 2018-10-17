@@ -13,6 +13,8 @@ export const BodyWrapper = styled.div`
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  padding: 1rem;
 `
 
 export const Grid = styled.div`
@@ -22,23 +24,33 @@ export const Grid = styled.div`
 
 export const Column = styled.div`
   display: grid;
-  grid-template-columns: 19rem 19rem 19rem;
+  grid-template-columns: 1fr;
   grid-gap: 2.5rem;
   grid-column-gap: 1.25rem;
   justify-content: center;
+  @media only screen  and (min-width : 1224px) {
+    grid-template-columns: 19rem 19rem 19rem;
+  }
 `
 
 //Buttons
 export const Button = styled.a`
-  width: 7rem;
+  width: 3rem;
   background: #54B46D;
-  padding: 1.5rem 3rem;
-  margin: calc(2*2rem) 0
+  padding: 1rem 2rem;
+  margin: calc(2*2rem) 0;
   cursor: pointer;
+  font-size: .8rem;
   text-align: center;
   color: white;
-  border: 0.1875rem solid white
+  border: 0.1875rem solid white;
   transition: border .2s ease, background .2s ease, color .2s ease;
+  @media only screen  and (min-width : 1224px) {
+    font-size: 1rem;
+    width: 7rem;
+    padding: 1.5rem 3rem;
+    margin: calc(2*2rem) 0;
+  }
   &.previous{
     float: left
   }
@@ -65,6 +77,7 @@ export const Button = styled.a`
 export const StepTitle = styled.h1`
   background: white;
   border: 0.1875rem solid #54B46D;
+  font-size: 1.2rem;
   text-align: center;
   color: #54B46D;
   padding: 1rem 3rem;
@@ -72,7 +85,13 @@ export const StepTitle = styled.h1`
   margin: 0 auto;
   width: fit-content;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  @media only screen  and (min-width : 1224px) {
+    font-size: 2rem;
+    padding: 1rem 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 `
 
 // Warnings
@@ -84,20 +103,27 @@ export const Wrapper = styled.div`
 `
 
 export const Warning = styled.div`
-  width: 50%;
+  width: 80%;
   height: 100%;
   background: white;
   border: 0.1875rem solid #E0624B;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  @media only screen  and (min-width : 1224px) {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
   & .Icon {
     width: 2.5rem;
     height: 2.5rem;
-    margin-right: 1rem;
+    @media only screen  and (min-width : 1224px) {
+      margin-right: 1rem;
+    }
   }
 
   &.allergy {
@@ -124,13 +150,19 @@ export const ModalDiv = styled.div`
 export const ModalSection = styled.section`
   position: fixed;
   background: white;
-  width: 50%;
-  height: calc(100vh - 200px);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  padding: 4rem 1rem;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  padding: 2rem 1rem;
   overflow-y: auto;
+  @media only screen  and (min-width : 1224px) {
+    width: 50%;
+    height: calc(100vh - 200px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 4rem 1rem;
+  }
 `
 
 export const CloseButton = styled.button`
@@ -199,24 +231,36 @@ export const Card = styled.div`
 // Confirmation
 export const Type = styled.h3`
   font-size: 1.5rem;
-  padding-left: 5rem;
   color: #54B46D;
+  text-align: center;
+  @media only screen  and (min-width : 1224px) {
+    padding-left: 5rem;
+    text-align: left;
+  }
 `
 
 export const List = styled.li`
   list-style: none;
-  padding: 0 5rem 1rem 5rem;
-  display: flex;
-  align-items: center;
+  padding: 0;
+  display: block;
+  @media only screen  and (min-width : 1224px) {
+    padding: 0 5rem 1rem 5rem;
+    display: flex;
+    align-items: center;
+  }
 `
 
 export const CourseThumbImageCircle = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  display: inline-block;
-  margin-right: 1rem;
+  display: block;
+  margin: 0 auto;
   overflow: hidden;
+  @media only screen  and (min-width : 1224px) {
+    display: inline-block;
+    margin-right: 1rem;
+  }
 `
 
 export const CourseThumbImage = styled.img`
@@ -226,10 +270,18 @@ export const CourseThumbImage = styled.img`
   margin-right: 1rem;
 `
 
+export const CourseName = styled.p`
+  text-align: center;
+  font-weight: bold;
+`
+
 // Allergy
 export const AllergyItem = styled.div`
-  text-align: left;
-  padding: 0 0 3rem 12rem;
+  text-align: center;
+  @media only screen  and (min-width : 1224px) {
+    text-align: left;
+    padding: 0 0 3rem 12rem;
+  }
 `
 
 export const InlineButton = styled.button`

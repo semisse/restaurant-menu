@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import { Router } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 import Menu from './components/Menu'
-import {
-  BodyWrapper,
-  Grid } from './styles/global'
+import { BodyWrapper } from './styles/global'
 
 const history = createHistory()
 
@@ -113,21 +111,19 @@ class App extends Component {
   render () {
     return (
       <BodyWrapper>
-        <Grid>
-          <Router history={history}>
-            <Menu
-              data={this.state.data}
-              step={this.state.step}
-              required={this.state.required}
-              handleRequired={this.handleRequired}
-              update={this.update}
-              pathname={history.location.pathname}
-              previousStep={this.previousStep}
-              nextStep={this.nextStep}
-              loading={this.state.loading}
-            />
-          </Router>
-        </Grid>
+        <Router history={history}>
+          <Menu
+            data={this.state.data}
+            step={this.state.step}
+            required={this.state.required}
+            handleRequired={this.handleRequired}
+            update={this.update}
+            pathname={history.location.pathname}
+            previousStep={this.previousStep}
+            nextStep={this.nextStep}
+            loading={this.state.loading}
+          />
+        </Router>
       </BodyWrapper>
     )
   }

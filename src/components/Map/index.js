@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
+  NavlinkWrapper,
   Navlink,
   Step,
   StepName,
@@ -19,7 +20,7 @@ export default class Map extends Component {
   }
   render() {
     return (
-      <div>
+      <NavlinkWrapper>
         <Navlink to='/0' className={this.select(0).length > 0 && 'completed'} >
           <Step>
             <Icon />
@@ -82,7 +83,7 @@ export default class Map extends Component {
             </StepName>
           </Step>
         </Navlink>
-      </div>
+      </NavlinkWrapper>
     )
   }
 }

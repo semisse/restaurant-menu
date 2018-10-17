@@ -2,19 +2,29 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import Checked from '../../img/checked.svg'
 
+export const NavlinkWrapper = styled.div`
+  display: flex;
+`
 export const Navlink = styled(NavLink)`
   width: 14%;
   height: 3.125rem;
-  display: inline-block;
+  display: flex;
+  align-content: top;
   margin: 0;
   margin-top: 2.5rem;
   position: relative;
   text-align: center;
   text-decoration: none;
-  font-size: .8rem;
+  font-size: .6rem;
+  @media only screen  and (min-width : 1224px) {
+    font-size: .8rem
+  }
   &.completed > div > span {
     background: url(${Checked}) no-repeat center center;
-    background-size: 0.625rem 0.625rem;
+    background-size: 0.4rem 0.4rem;
+    @media only screen  and (min-width : 1224px) {
+      background-size: 0.625rem 0.625rem;
+    }
   }
   &.disabled, &[disabled] {
     pointer-events: none;
@@ -33,15 +43,21 @@ export const Navlink = styled(NavLink)`
     & > div > span:before {
       content: '';
       position: absolute;
-      width: 0.375rem;
-      height: 0.375rem;
+      width: 0.2rem;
+      height: 0.2rem;
       background: green;
       border-radius: 50%;
       top: 50%;
       left: 50%;
-      margin-top: -0.1875rem;
-      margin-left: -0.1875rem;
+      margin-top: -0.1rem;
+      margin-left: -0.1rem;
       transition: all .2s ease;
+      @media only screen  and (min-width : 1224px) {
+        width: 0.375rem;
+        height: 0.375rem;
+        margin-top: -0.1875rem;
+        margin-left: -0.1875rem;
+      }
     }
     &.completed {
       & > div > span:before {
@@ -51,21 +67,29 @@ export const Navlink = styled(NavLink)`
   }
   &:before {
     position: absolute;
-    top: 0.625rem;
+    top: .35rem;
     left: 0;
     width: 2.5rem;
     height: 0.0625rem;
     background: olive;
-    content: ''
+    content: '';
+    display: none;
+    @media only screen  and (min-width : 1224px) {
+      display: block;
+    }
   }
   &:after {
     position: absolute;
-    top: 0.625rem;
+    top: .35rem;
     right: 0;
     width: 2.5rem;
     height: 0.0625rem;
     background: olive;
-    content: ''
+    content: '';
+    display: none;
+    @media only screen  and (min-width : 1224px) {
+      display: block;
+    }
   }
   &:first-child {
     &:before {
@@ -92,12 +116,16 @@ export const StepName = styled.div`
   margin-top: 0.625rem;
 `
 export const Icon = styled.span`
-  width: 1.25rem;
-  height: 1.25rem;
+  width: .7rem;
+  height: .7rem;
   border-radius: 50%;
   display: block;
   margin: 0 auto;
   position: relative;
   border: 0.0625rem solid grey;
   transition: all .2s ease;
+  @media only screen  and (min-width : 1224px) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 `
