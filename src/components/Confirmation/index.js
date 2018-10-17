@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   StepTitle,
@@ -68,4 +69,8 @@ export default class Confirmation extends Component {
       </div>
     )
   }
+}
+
+Confirmation.propTypes = {
+  data: PropTypes.array
 }

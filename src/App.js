@@ -15,6 +15,7 @@ class App extends Component {
     step: '',
     required: false,
     disabled: true,
+    loading: true
   }
 
   // Fetch data and listen the history changes
@@ -22,7 +23,7 @@ class App extends Component {
     const url = `https://api.myjson.com/bins/sf7fw`
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({ data }))
+      .then(data => this.setState({ data, loading: false }))
 
     this.setState({
       step: history.location.pathname
@@ -34,6 +35,7 @@ class App extends Component {
       })
     })
   }
+
 
   // Next step button with validation to prevent going
   // to confirmation without selecting one main course
@@ -105,12 +107,17 @@ class App extends Component {
       this.setState({
         required: true
       })
+    } else {
+      this.setState({
+        required: false
+      })
     }
   }
 
   render () {
     return (
       <BodyWrapper>
+        {console.log(this.state.required, history.location.pathname)}
         <Grid>
           <Router history={history}>
             <Menu
@@ -123,6 +130,7 @@ class App extends Component {
               pathname={history.location.pathname}
               previousStep={this.previousStep}
               nextStep={this.nextStep}
+              loading={this.state.loading}
             />
           </Router>
         </Grid>
@@ -141,7 +149,8 @@ App.protoTypes = {
   pathname: PropTypes.string,
   required: PropTypes.bool,
   update: PropTypes.func,
-  url: PropTypes.string
+  url: PropTypes.string,
+  loading: PropTypes.bool
 }
 
 export default App

@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Horsdoeuvres from '../Horsdoeuvres'
-import Soup from '../Soup'
-import Fish from '../Fish'
-import Salad from '../Salad'
-import Maincourse from '../Maincourse'
-import Dessert from '../Dessert'
 import Confirmation from '../Confirmation'
 import Map from '../Map'
 import Navigation from '../Navigation'
+import Section from '../Section'
 
 class Menu extends Component {
   // Depending on the url, render components
@@ -17,37 +12,61 @@ class Menu extends Component {
     switch (step) {
       case '/1':
         return <Route path='/1' render={() =>
-          <Soup
-            data={this.props.data}
-            update={this.props.update}
-          />} />
-      case '/2':
-        return <Route path='/2' render={() =>
-          <Fish
-            data={this.props.data}
-            update={this.props.update}
-          />} />
-      case '/3':
-        return <Route path='/3' render={() =>
-          <Salad
-            data={this.props.data}
-            update={this.props.update}
-          />} />
-      case '/4':
-        return <Route path='/4' render={() =>
-          <Maincourse
+          <Section
             data={this.props.data}
             required={this.props.required}
             update={this.props.update}
             handleRequired={this.props.handleRequired}
             pathname={this.props.history.location.pathname}
+            loading={this.props.loading}
+            step={this.props.step}
+            category={1}
+          />} />
+      case '/2':
+        return <Route path='/2' render={() =>
+          <Section
+            data={this.props.data}
+            required={this.props.required}
+            update={this.props.update}
+            handleRequired={this.props.handleRequired}
+            pathname={this.props.history.location.pathname}
+            loading={this.props.loading}
+            step={this.props.step}
+            category={2}
+          />} />
+      case '/3':
+        return <Route path='/3' render={() =>
+          <Section
+            data={this.props.data}
+            required={this.props.required}
+            update={this.props.update}
+            handleRequired={this.props.handleRequired}
+            pathname={this.props.history.location.pathname}
+            loading={this.props.loading}
+            step={this.props.step}
+            category={3}
+          />} />
+      case '/4':
+        return <Route path='/4' render={() =>
+          <Section
+            data={this.props.data}
+            required={this.props.required}
+            update={this.props.update}
+            handleRequired={this.props.handleRequired}
+            pathname={this.props.history.location.pathname}
+            loading={this.props.loading}
+            step={this.props.step}
+            category={4}
           />} />
       case '/5':
         return <Route path='/5' render={() =>
-          <Dessert
+          <Section
             data={this.props.data}
             update={this.props.update}
             handleRequired={this.props.handleRequired}
+            loading={this.props.loading}
+            step={this.props.step}
+            category={5}
           />} />
       case '/6':
         return <Route path='/6' render={() =>
@@ -57,12 +76,19 @@ class Menu extends Component {
             handleRequired={this.props.handleRequired}
             pathname={this.props.history.location.pathname}
             step={this.props.step}
+            loading={this.props.loading}
           />} />
       default:
         return <Route path='/0' render={() =>
-          <Horsdoeuvres
+          <Section
             data={this.props.data}
+            required={this.props.required}
             update={this.props.update}
+            handleRequired={this.props.handleRequired}
+            pathname={this.props.history.location.pathname}
+            loading={this.props.loading}
+            step={this.props.step}
+            category={0}
           />} />
     }
   }

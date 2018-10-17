@@ -5,10 +5,12 @@ import {
   CourseImage,
   Description,
   Spice,
-  Card } from '../../styles/global'
+  Card,
+  LdsRipple } from '../../styles/global'
+
+import Default from '../../img/default.svg'
 
 export default class Course extends Component {
-
   handleClick = (id) => {
     this.props.update(id)
   }
@@ -25,6 +27,15 @@ export default class Course extends Component {
   }
 
   render () {
+    if ( this.props.loading === true) {
+      return(
+        <LdsRipple className='ldsRipple'>
+          <div></div>
+          <div></div>
+          {console.log(this.props.loading)}
+        </LdsRipple>
+      )
+    } else {
     return (
       <div>
         {this.renderRequired()}
@@ -32,7 +43,7 @@ export default class Course extends Component {
           {this.props.filteredCourseType && this.props.filteredCourseType.map(course =>
             <Card key={course.id} onClick={() => this.handleClick(course.id)} selected={course.selected && course.selected}>
               <div>
-                <CourseImage style={{ backgroundImage: `url(${course.image})` }} alt={course.title} />
+                <CourseImage style={{ backgroundImage: course.image === null ? `url(${Default})` : `url(${course.image})` }} alt={course.title} />
               </div>
               <h2>{course.title}</h2>
               <Description>{course.description}</Description>
@@ -43,6 +54,6 @@ export default class Course extends Component {
           )}
         </Column>
       </div>
-    )
+    )}
   }
 }

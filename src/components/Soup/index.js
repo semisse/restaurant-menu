@@ -12,7 +12,7 @@ export default class Soup extends Component {
     return (
       <div>
         <StepTitle>Soup</StepTitle>
-        <Course filteredCourseType={filteredCourseType} update={this.props.update} />
+        <Course filteredCourseType={filteredCourseType} update={this.props.update} loading={this.props.loading} />
       </div>
     )
   }
@@ -20,5 +20,6 @@ export default class Soup extends Component {
 
 Soup.propTypes = {
   data: PropTypes.array,
-  update: PropTypes.func
+  update: PropTypes.func,
+  loading: PropTypes.bool
 }

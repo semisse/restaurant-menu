@@ -3,34 +3,37 @@ import PropTypes from 'prop-types'
 import Course from '../Course'
 import { StepTitle } from '../../styles/global'
 
-export default class Maincourse extends Component {
+export default class Section extends Component {
   componentDidMount () {
     this.props.handleRequired()
   }
   render () {
     const filteredCourseType = this.props.data && this.props.data.map(item => ({
       ...item,
-      courseType: item.courseType.filter(x => x === 4) }))
+      courseType: item.courseType.filter(x => x === this.props.category)}))
       .filter(x => x.courseType.length > 0)
+    const Titles = ['Hors d\'oeuvres', 'Soup', 'Fish', 'Salad', 'Main Course', 'Dessert']
     return (
       <div>
-        <StepTitle>Main Course</StepTitle>
+        <StepTitle>{Titles[this.props.category]}</StepTitle>
         <Course
           filteredCourseType={filteredCourseType}
-          data={this.props.data}
           update={this.props.update}
+          loading={this.props.loading}
           required={this.props.required}
           pathname={this.props.pathname}
+          data={this.props.data}
+          handleRequired={this.props.handleRequired}
+          step={this.props.step}
         />
       </div>
     )
   }
 }
 
-Maincourse.propTypes = {
+Section.propTypes = {
   data: PropTypes.array,
-  pathname: PropTypes.string,
-  required: PropTypes.bool,
   update: PropTypes.func,
-  handleRequired: PropTypes.func
+  loading: PropTypes.bool,
+  category: PropTypes.number
 }
