@@ -52,7 +52,7 @@ export const Navlink = styled(NavLink)`
       margin-top: -0.1rem;
       margin-left: -0.1rem;
       transition: all .2s ease;
-      @media only screen  and (min-width : 1224px) {
+      @media only screen  and (min-width : 800px) {
         width: 0.375rem;
         height: 0.375rem;
         margin-top: -0.1875rem;
@@ -67,27 +67,27 @@ export const Navlink = styled(NavLink)`
   }
   &:before {
     position: absolute;
-    top: .35rem;
+    top: .55rem;
     left: 0;
     width: 2.5rem;
     height: 0.0625rem;
     background: olive;
     content: '';
     display: none;
-    @media only screen  and (min-width : 1224px) {
+    @media only screen  and (min-width : 800px) {
       display: block;
     }
   }
   &:after {
     position: absolute;
-    top: .35rem;
+    top: .55rem;
     right: 0;
     width: 2.5rem;
     height: 0.0625rem;
     background: olive;
     content: '';
     display: none;
-    @media only screen  and (min-width : 1224px) {
+    @media only screen  and (min-width : 800px) {
       display: block;
     }
   }
@@ -124,7 +124,7 @@ export const Icon = styled.span`
   position: relative;
   border: 0.0625rem solid grey;
   transition: all .2s ease;
-  @media only screen  and (min-width : 1224px) {
+  @media only screen  and (min-width : 800px) {
     width: 1.25rem;
     height: 1.25rem;
   }

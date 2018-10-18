@@ -28,6 +28,9 @@ export const Column = styled.div`
   grid-gap: 2.5rem;
   grid-column-gap: 1.25rem;
   justify-content: center;
+  @media only screen and (min-width : 600px) and (max-width : 1223px) {
+    grid-template-columns: 1fr 1fr;
+  }
   @media only screen  and (min-width : 1224px) {
     grid-template-columns: 19rem 19rem 19rem;
   }
@@ -155,7 +158,7 @@ export const ModalSection = styled.section`
   left: 0;
   padding: 2rem 1rem;
   overflow-y: auto;
-  @media only screen  and (min-width : 1224px) {
+  @media only screen  and (min-width : 600px) {
     width: 50%;
     height: calc(100vh - 200px);
     top: 50%;
@@ -208,6 +211,8 @@ export const Card = styled.div`
       padding: .75rem;
       position: relative;
       transition: outline .1s ease;
+      max-width: 18.75rem;
+      justify-self: center;
       &:hover{
         box-shadow: 0 0.3125rem 0.625rem 0.0625rem rgba(0,0,0,0.20);
       }
