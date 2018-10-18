@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { Button } from '../../styles/global'
 
 export default class Navigation extends Component {
-  samuel = () => {
+  // Check if there state is required and if we are on Main Course page
+  // and enable or disable the button accordingly
+  isDisabled = () => {
     if (this.props.required  && this.props.pathname === '/4') {
       return 'next disabled'
     } else {
@@ -24,7 +26,7 @@ export default class Navigation extends Component {
           <Button className={'submit'}>Submit</Button> :
           <Button
             onClick={e => this.props.nextStep(e)}
-            className={this.samuel()}>
+            className={this.isDisabled()}>
               Next
           </Button>
         }

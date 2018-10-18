@@ -36,7 +36,7 @@ export const Column = styled.div`
   }
 `
 
-//Buttons
+// Buttons
 export const Button = styled.a`
   width: 3rem;
   background: #54B46D;
@@ -264,6 +264,7 @@ export const CourseThumbImageCircle = styled.div`
   overflow: hidden;
   @media only screen  and (min-width : 1224px) {
     display: inline-block;
+    margin: unset;
     margin-right: 1rem;
   }
 `

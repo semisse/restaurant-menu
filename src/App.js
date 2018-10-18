@@ -33,6 +33,14 @@ class App extends Component {
     })
   }
 
+  isMainCourseSelected = () => {
+    const MainCourse = this.state.data && this.state.data.map(item => ({
+      ...item,
+      courseType: item.courseType.filter(x => x === 4) }))
+      .filter(x => x.courseType.length > 0 && x.selected === true )
+    return MainCourse
+  }
+
   // Next step button with validation to prevent going
   // to confirmation without selecting one main course
   nextStep = (e) => {
@@ -67,17 +75,13 @@ class App extends Component {
     this.setState({
       data,
     }, () => {
-      const MainCourse = this.state.data && this.state.data.map(item => ({
-        ...item,
-        courseType: item.courseType.filter(x => x === 4) }))
-        .filter(x => x.courseType.length > 0 && x.selected === true )
-      // if the user is on the maincourse page and has selected one item
-      // we set required and disabled to false and the next pages are available
-      if(history.location.pathname === '/4' && MainCourse.length > 0) {
+      // if the user is on the Main Course page and has selected one item
+      // we set required to false and the next pages are available
+      if(history.location.pathname === '/4' && this.isMainCourseSelected().length > 0) {
         this.setState({
           required: false
         })
-      } else if (history.location.pathname === '/4' && MainCourse.length === 0) {
+      } else if (history.location.pathname === '/4' && this.isMainCourseSelected().length === 0) {
         this.setState({
           required: true
         })
@@ -85,29 +89,15 @@ class App extends Component {
     })
   }
 
-  MainCourseSelected = () => {
-    const MainCourse = this.state.data && this.state.data.map(item => ({
-      ...item,
-      courseType: item.courseType.filter(x => x === 4) }))
-      .filter(x => x.courseType.length > 0 && x.selected === true )
-    return MainCourse
-  }
-
   // Alert message to show on the Main Course page if the user
   // has not selected one
   handleRequired = () => {
-    const MainCourse = this.state.data && this.state.data.map(item => ({
-      ...item,
-      courseType: item.courseType.filter(x => x === 4) }))
-      .filter(x => x.courseType.length > 0 && x.selected === true )
-
-    if (history.location.pathname === '/4' && MainCourse.length === 0) {
+    if (history.location.pathname === '/4' && this.isMainCourseSelected().length === 0) {
       this.setState({
         required: true
       })
     }
   }
-
   render () {
     return (
       <BodyWrapper>

@@ -95,7 +95,8 @@ class Menu extends Component {
   }
 
   // Check if there is at least one main course selected, if not
-  // redirect users to Main Course section
+  // redirect users to Main Course section in case they
+  // manually go to Desert or Confirmation pages
   redirect = () => {
     if ((this.props.step === '/5' || this.props.step === '/6') && this.props.required) {
       return <Redirect to='/4' />

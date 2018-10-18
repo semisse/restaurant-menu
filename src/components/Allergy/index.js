@@ -28,11 +28,9 @@ export default class Allergy extends Component {
       show: false
     })
   }
-
   escFunction = (e) => {
     e.keyCode === 27 && this.setState({ show: false })
   }
-
   componentDidMount() {
     document.addEventListener('keydown', this.escFunction, false)
   }

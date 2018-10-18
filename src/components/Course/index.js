@@ -11,16 +11,19 @@ import {
 import Default from '../../img/default.svg'
 
 export default class Course extends Component {
-
+  // If user is on Main Course page and no course is selected
+  // then we will update the state.required to true
   componentDidMount() {
     if(this.props.pathname === '/4' || this.props.step === '/4') {
       this.props.handleRequired()
     }
   }
+  // Select course
   handleClick = (id) => {
     this.props.update(id)
   }
-
+  // If no course is selected, we will show this warning
+  // but only if the user is on the Main Course page
   renderRequired = () => {
     const pageSelected = this.props.data && this.props.data.map(item => ({
       ...item,
@@ -31,9 +34,8 @@ export default class Course extends Component {
       return <Required />
     }
   }
-
   render () {
-    if ( this.props.loading === true) {
+    if (this.props.loading === true) {
       return(
         <LdsRipple className='ldsRipple'>
           <div></div>

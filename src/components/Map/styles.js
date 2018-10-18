@@ -19,6 +19,7 @@ export const Navlink = styled(NavLink)`
   @media only screen  and (min-width : 1224px) {
     font-size: .8rem
   }
+  /* if one course is selected, we will show a checkmark */
   &.completed > div > span {
     background: url(${Checked}) no-repeat center center;
     background-size: 0.4rem 0.4rem;
@@ -26,6 +27,9 @@ export const Navlink = styled(NavLink)`
       background-size: 0.625rem 0.625rem;
     }
   }
+  /* to disable next button on Main Course page if
+     there is no course selected. &[disabled] IE compatible
+  */
   &.disabled, &[disabled] {
     pointer-events: none;
     & div > span, & div > div {
@@ -38,6 +42,7 @@ export const Navlink = styled(NavLink)`
   &.active > div > div {
     color: green
   }
+  /* on hover, fill the circle with green */
   &:hover {
     cursor: pointer;
     & > div > span:before {
@@ -65,6 +70,7 @@ export const Navlink = styled(NavLink)`
       }
     }
   }
+  /* Decorating lines that connect each step */
   &:before {
     position: absolute;
     top: .55rem;

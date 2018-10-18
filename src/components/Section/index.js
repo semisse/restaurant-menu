@@ -5,10 +5,12 @@ import { StepTitle } from '../../styles/global'
 
 export default class Section extends Component {
   render () {
+    // Grab each item from data and filter through the courseType.
+    // The Category prop will feed the number
     const filteredCourseType = this.props.data && this.props.data.map(item => ({
       ...item,
       courseType: item.courseType.filter(x => x === this.props.category)}))
-      .filter(x => x.courseType.length > 0)
+      .filter(item => item.courseType.length > 0)
     const Titles = ['Hors d\'oeuvres', 'Soup', 'Fish', 'Salad', 'Main Course', 'Dessert']
     return (
       <div>
