@@ -56,12 +56,7 @@ class App extends Component {
     e.preventDefault()
     const noSlashes = history.location.pathname.replace(/\//g, '')
     const newPage = parseInt(noSlashes) - parseInt(1)
-    if (noSlashes > 0) {
-      history.push('/' + newPage)
-    }
-    this.setState({
-      required: false
-    })
+    return noSlashes > 0 && history.push('/' + newPage)
   }
 
   // When a course is selected

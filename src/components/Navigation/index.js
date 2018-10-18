@@ -30,7 +30,6 @@ export default class Navigation extends Component {
               Next
           </Button>
         }
-        {console.log(this.props.required)}
       </div>
     )
   }

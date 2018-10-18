@@ -127,4 +127,7 @@ There is no 'done' in our industry and if I had more time I would make a bunch o
 - If you are wondaring why am I not using find() in some functions, is because I wanted it to be compatible with IE11
 - It would be cool be able to remove the course from the last page
 - I didn't have time to implement better an accessability strategy, most important the usage of the tab functionality (for a quick solution I would install the react-tabs package).
-- I'm not happy with the styling. It could be much better, but it does the trick. Also, I should be using some global variables (colors, for example).
+- It would be important to setup some animations to slide each section to the side. This would give user a better sence of the step-by-step process and the exact location he is in. For that, of course, I would use react-transition-group package.
+- I'm not happy with the styling. It could be much better, but it does the trick. The mobile version, specially the Map component, is far from being good. Also, I should be using some global variables (colors, for example).
+- I should have configured a lazy load system for images.
+- I didn't use any testing tool and to be quite honest I don't have any experience with it. It is something that I will learn surely.
