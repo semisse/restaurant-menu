@@ -19,7 +19,7 @@ export default class Course extends Component {
     }
   }
   // Select course
-  handleClick = (id) => {
+  handleUpdate = (id) => {
     this.props.update(id)
   }
   // If no course is selected, we will show this warning
@@ -48,7 +48,7 @@ export default class Course extends Component {
         {this.renderRequired()}
         <Column>
           {this.props.filteredCourseType && this.props.filteredCourseType.map(course =>
-            <Card key={course.id} onClick={() => this.handleClick(course.id)} selected={course.selected && course.selected}>
+            <Card key={course.id} onClick={() => this.handleUpdate(course.id)} selected={course.selected && course.selected}>
               <div>
                 <CourseImage style={{ backgroundImage: course.image === null ? `url(${Default})` : `url(${course.image})` }} alt={course.title} />
               </div>

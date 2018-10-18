@@ -33,6 +33,7 @@ class App extends Component {
     })
   }
 
+  // Check if there is any selected items in Main Course page
   isMainCourseSelected = () => {
     const MainCourse = this.state.data && this.state.data.map(item => ({
       ...item,

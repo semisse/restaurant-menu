@@ -47,14 +47,12 @@ export default class Confirmation extends Component {
   Results = () => {
     const Titles = ['Hors d\'oeuvres', 'Soup', 'Fish', 'Salad', 'Main Course', 'Dessert']
     const TitlesAndCourses = Titles.map((item, i) => {
-      if(this.SelectedCourses(i).length > 0){
-          return (
-            <div key={i}>
-              <Type>{item}</Type>
-              {this.SelectedCourses(i)}
-            </div>
-          )
-        }
+      return this.SelectedCourses(i).length > 0 &&
+        <div key={i}>
+          <Type>{item}</Type>
+          {this.SelectedCourses(i)}
+        </div>
+
       }
     )
     return TitlesAndCourses
